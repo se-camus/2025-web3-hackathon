@@ -79,6 +79,13 @@ body {
   max-width: 900px;
 }
 
+.card-grid-wide {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  max-width: 1800px;
+}
+
 .card {
   display: flex;
   flex-direction: column;
