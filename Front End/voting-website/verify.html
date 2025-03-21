@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Electoral Voting Portal</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styelsheetVerifyPage.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,21 +18,31 @@
         </p>
       </div>
     <!-- MAIN CONTENT -->  
-      <div class="card-grid-wide">
-        <div class="card">
-          <div class="icon-container">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
+    <div class="realme-login-container">
+      <div class="realme-login">
+        <div class="login-section">
+          <h2 class="realme-title">Log in with <span class="highlight">RealMe</span></h2>
+          <p class="realme-subtitle">You've been redirected here so you can log in with RealMe</p>
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
           </div>
-          <h2 class="card-title">Let's get you signed in through RealMe</h2>
-          <p class="card-description">
-            RealMe is a government approved identity verification service.
-          </p>
-          <button class="button">Sign in with RealMe</button>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+          </div>
+          <button class="realme-button">Log in</button>
+          <p class="realme-links"><a href="#">Forgot Username </a> or <a href="#"> Forgot Password?</a></p>
+        </div>
+        <div class="signup-section">
+          <h2 class="realme-title">Create a <span class="highlight">RealMe</span> login</h2>
+          <p class="realme-subtitle">To access this service you need a RealMe login.</p>
+          <p class="realme-subtitle">You'll be able to access a range of services with a single username and password. RealMe is designed to protect your privacy and security.</p>
+          <button class="realme-button">Create a RealMe login</button>
         </div>
       </div>
+    </div>
+    
     <!-- MAIN CONTENT CONTENT-->
       <footer class="footer">
         <p>Secure • Accessible • Transparent</p>
@@ -45,7 +55,7 @@
     </div>
   </main>
 
-  <script src="script.js"></script>
+<script src="scriptForVerify.js"></script>  
 </body>
 </html>
 
