@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Electoral Voting Portal</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styelsheetVerifyPage.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,21 +18,31 @@
         </p>
       </div>
     <!-- MAIN CONTENT -->  
-      <div class="card-grid-wide">
-        <div class="card">
-          <div class="icon-container">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
+    <div class="realme-login-container">
+      <div class="realme-login">
+        <div class="login-section">
+          <h2 class="realme-title">Log in with <span class="highlight">RealMe</span></h2>
+          <p class="realme-subtitle">You've been redirected here so you can log in with RealMe</p>
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
           </div>
-          <h2 class="card-title">Let's get you signed in through RealMe</h2>
-          <p class="card-description">
-            RealMe is a government approved identity verification service.
-          </p>
-          <button class="button">Sign in with RealMe</button>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+          </div>
+          <button class="realme-button">Log in</button>
+          <p class="realme-links"><a href="https://login.realme.govt.nz/32179062-92f6-4eb0-89bc-df400a9e0367/B2C_1A_DIA_RealMe_Home/api/CombinedSigninAndSignup/unified?claimsexchange=LocalAccountForgotUsernameExchange&csrf_token=ZXFJS3BYVVN0VHNzQVNySTB3ZU15WkovMVcyeWNWUkRmYlFoOFZZRGJSL0p6VWR2bkhyc0ZCTys2bnJ3cEhQRHAwd2lZakp6K1BhZE1raGp2UGVIZGc9PTsyMDI1LTAzLTIxVDIyOjExOjIyLjAxMjIzMjFaO1ROOHhKenZZUmJvckc0MFQwNUZaYkE9PTt7Ik9yY2hlc3RyYXRpb25TdGVwIjoxfQ==&tx=StateProperties=eyJUSUQiOiIxODM0N2IyOS01MzI2LTRmYWItYWM5ZC1mMGFlZDg5OGI3MmIifQ&p=B2C_1A_DIA_RealMe_Home&diags=%7B%22pageViewId%22%3A%22d922ecb9-88b1-46ca-8a73-94ea08083273%22%2C%22pageId%22%3A%22CombinedSigninAndSignup%22%2C%22trace%22%3A%5B%7B%22ac%22%3A%22T005%22%2C%22acST%22%3A1742595082%2C%22acD%22%3A2%7D%2C%7B%22ac%22%3A%22T021%20-%20URL%3Ahttps%3A%2F%2Fconfig.realme.govt.nz%2Fb2c-ui%2Fen%2Fpages%2Flogin%2Findex.html%3FMWNlYWZhODEtN2MzOS00YzdkLWJmNDQtZWNlZDk2NmUyYTU3%22%2C%22acST%22%3A1742595082%2C%22acD%22%3A8%7D%2C%7B%22ac%22%3A%22T019%22%2C%22acST%22%3A1742595082%2C%22acD%22%3A4%7D%2C%7B%22ac%22%3A%22T004%22%2C%22acST%22%3A1742595082%2C%22acD%22%3A1%7D%2C%7B%22ac%22%3A%22T003%22%2C%22acST%22%3A1742595082%2C%22acD%22%3A0%7D%2C%7B%22ac%22%3A%22T035%22%2C%22acST%22%3A1742595083%2C%22acD%22%3A0%7D%2C%7B%22ac%22%3A%22T030Online%22%2C%22acST%22%3A1742595083%2C%22acD%22%3A0%7D%2C%7B%22ac%22%3A%22T035%22%2C%22acST%22%3A1742595083%2C%22acD%22%3A0%7D%2C%7B%22ac%22%3A%22T002%22%2C%22acST%22%3A1742595084%2C%22acD%22%3A0%7D%5D%7D">Forgot Username </a> or <a href="https://login.realme.govt.nz/32179062-92f6-4eb0-89bc-df400a9e0367/B2C_1A_DIA_RealMe_Home/api/CombinedSigninAndSignup/unified?claimsexchange=LocalAccountForgotPasswordExchange&csrf_token=ZVB6U0ZqMTVPMjJrNTA5bjlGR3BFcjkyQkxBd0tjZnV3ZlZTdkdTMVl5RHZzRGVxREtRVXAxVThjMFluNCtrN21tb3UvTk1rc3A3OU4wL0E3SE16bWc9PTsyMDI1LTAzLTIxVDIyOjEyOjIyLjk3OTc3MzdaOzJKUUY5djRXQlJHc1ZhS2s0QlY2WEE9PTt7Ik9yY2hlc3RyYXRpb25TdGVwIjoxfQ==&tx=StateProperties=eyJUSUQiOiIxODM0N2IyOS01MzI2LTRmYWItYWM5ZC1mMGFlZDg5OGI3MmIifQ&p=B2C_1A_DIA_RealMe_Home&diags=%7B%22pageViewId%22%3A%22a7f306b8-73d6-4ff5-ae5c-858024ef4ac9%22%2C%22pageId%22%3A%22CombinedSigninAndSignup%22%2C%22trace%22%3A%5B%7B%22ac%22%3A%22T005%22%2C%22acST%22%3A1742595143%2C%22acD%22%3A2%7D%2C%7B%22ac%22%3A%22T021%20-%20URL%3Ahttps%3A%2F%2Fconfig.realme.govt.nz%2Fb2c-ui%2Fen%2Fpages%2Flogin%2Findex.html%3FMWNlYWZhODEtN2MzOS00YzdkLWJmNDQtZWNlZDk2NmUyYTU3%22%2C%22acST%22%3A1742595143%2C%22acD%22%3A8%7D%2C%7B%22ac%22%3A%22T019%22%2C%22acST%22%3A1742595143%2C%22acD%22%3A4%7D%2C%7B%22ac%22%3A%22T004%22%2C%22acST%22%3A1742595143%2C%22acD%22%3A1%7D%2C%7B%22ac%22%3A%22T003%22%2C%22acST%22%3A1742595143%2C%22acD%22%3A1%7D%2C%7B%22ac%22%3A%22T035%22%2C%22acST%22%3A1742595143%2C%22acD%22%3A0%7D%2C%7B%22ac%22%3A%22T030Online%22%2C%22acST%22%3A1742595143%2C%22acD%22%3A0%7D%2C%7B%22ac%22%3A%22T035%22%2C%22acST%22%3A1742595143%2C%22acD%22%3A0%7D%2C%7B%22ac%22%3A%22T002%22%2C%22acST%22%3A1742595144%2C%22acD%22%3A0%7D%5D%7D"> Forgot Password?</a></p>
+        </div>
+        <div class="signup-section">
+          <h2 class="realme-title">Create a <span class="highlight">RealMe</span> login</h2>
+          <p class="realme-subtitle">To access this service you need a RealMe login.</p>
+          <p class="realme-subtitle">You'll be able to access a range of services with a single username and password. RealMe is designed to protect your privacy and security.</p>
+          <button class="realme-button">Create a RealMe login</button>
         </div>
       </div>
+    </div>
+    
     <!-- MAIN CONTENT CONTENT-->
       <footer class="footer">
         <p>Secure • Accessible • Transparent</p>
@@ -45,7 +55,7 @@
     </div>
   </main>
 
-  <script src="script.js"></script>
+<script src="scriptForVerify.js"></script>  
 </body>
 </html>
 

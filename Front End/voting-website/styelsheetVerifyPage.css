@@ -1,0 +1,380 @@
+/* Base styles */
+:root {
+  --primary-color: #eb6725;
+  --primary-light: rgba(37, 99, 235, 0.1);
+  --text-color: #1f2937;
+  --text-muted: #6b7280;
+  --background-start: #f8fafc;
+  --background-end: #f1f5f9;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --radius: 0.5rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+  line-height: 1.5;
+
+}
+
+/* Main container */
+.main-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, var(--background-start), var(--background-end));
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+}
+
+.highlight {
+  color: var(--primary-color);
+}
+
+.subtitle {
+  max-width: 700px;
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  margin: 0 auto;
+}
+
+/* Cards */
+.card-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.card-grid-wide {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  max-width: 1800px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: var(--primary-light);
+  margin-bottom: 0.5rem;
+}
+
+.icon {
+  color: var(--primary-color);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.card-description {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* Button */
+.button {
+  display: inline-block;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: #ec530c;
+}
+
+.button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Footer */
+.footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .title {
+    font-size: 3.5rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Verify Webpage Styles for RealMe Login */
+/* RealMe Login Container */
+.realme-login-container {
+  width: 100%;
+  max-width: 650px;
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  display: flex;
+  gap: 2rem;
+  text-align: center;
+}
+
+
+.login-section {
+  flex: 1;
+}
+
+.signup-section{
+  flex:1;
+}
+
+/* RealMe Logo */
+.realme-logo {
+  display: block;
+  max-width: 200px;
+  margin: 0 auto 1.5rem;
+}
+
+/* Login Title */
+.realme-login-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+/* Input Field Styles */
+.realme-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.realme-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: #f8fafc;
+  transition: border-color 0.3s ease;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.realme-input:focus {
+  outline: none;
+  border-color: #1e40af;
+  box-shadow: 0 0 4px rgba(30, 64, 175, 0.4);
+}
+
+/* Login Button */
+.realme-login-button {
+
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #1e40af;
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.realme-login-button:hover {
+  background-color: #172554;
+}
+
+/* Forgot Password & Help Links */
+.realme-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+}
+
+.realme-links a {
+  color: #1e40af;
+  text-decoration: none;
+}
+
+.realme-links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .realme-login-container {
+    width: 90%;
+    padding: 1.5rem;
+  }
+}
+
+/* Define the reddish-orange color */
+:root {
+  --primary-color: #dc430b; /* Reddish-orange */
+  --primary-dark: #d9531e; /* Slightly darker shade for hover effects */
+  --text-color: #1f2937;
+  --text-muted: #6b7280;
+  --background-start: #f8fafc;
+  --background-end: #f1f5f9;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --radius: 0.5rem;
+}
+
+/* Apply the new color to the login titles */
+.realme-title {
+  color: var(--primary-color);
+}
+
+/* Apply the new color to the "Forgot Password" and "Forgot Username" links */
+.realme-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.realme-links a:hover {
+  text-decoration: underline;
+  color: var(--primary-dark);
+}
+
+/* Style the login buttons */
+.realme-button {
+  display: block;
+  width: 50%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.realme-button:hover {
+  background-color: var(--primary-dark);
+}
+
+.realme-button:focus {
+  outline: 2px solid var(--primary-dark);
+  outline-offset: 2px;
+}
+
+/* Center the buttons  */
+/* Center the buttons in the login and signup sections */
+.login-section, .signup-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  text-align: center; /* Center text */
+}
+
+/* Adjust the button width and spacing */
+.realme-button {
+  width: auto; /* Adjust width to fit content */
+  padding: 0.75rem 2rem; /* Add padding for better spacing */
+  margin-top: 1rem; /* Add margin for spacing */
+}
+
+/* Adjusting the buttons */
+
+
+
+
