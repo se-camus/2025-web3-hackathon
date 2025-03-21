@@ -1,6 +1,6 @@
 /* Base styles */
 :root {
-  --primary-color: #2563eb;
+  --primary-color: #eb6725;
   --primary-light: rgba(37, 99, 235, 0.1);
   --text-color: #1f2937;
   --text-muted: #6b7280;
@@ -138,7 +138,7 @@ body {
 }
 
 .button:hover {
-  background-color: #1d4ed8;
+  background-color: #ec530c;
 }
 
 .button:focus {
