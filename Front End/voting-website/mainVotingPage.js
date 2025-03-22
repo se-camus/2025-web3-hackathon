@@ -53,5 +53,5 @@ confirmationButton.addEventListener('click', function(){
 
     alert("Thank you for Voting!");
 
-    window.location.href = 'thankyoupage.html'; 
+    window.location.href = 'success.html';  //Takes the user to successPage! 
 })
