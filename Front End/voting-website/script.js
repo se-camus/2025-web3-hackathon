@@ -66,7 +66,7 @@ const removeNav = (url) =>  {
 
     // Wait for the animation to complete before navigating
     setTimeout(() => {
-      window.location.href = url;
+      slideContent(url);
     }, 500); // Matches the CSS transition duration (500ms)
   }, 300); // Additional delay before starting the animation
 };

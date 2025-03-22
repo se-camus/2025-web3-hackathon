@@ -23,6 +23,7 @@
     font-family: "Inter", sans-serif;
     color: var(--text-color);
     line-height: 1.5;
+    background: linear-gradient(to bottom, var(--background-start), var(--background-end));
   }
   
   /* Main container */

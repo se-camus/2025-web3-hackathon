@@ -23,7 +23,7 @@ body {
   font-family: "Inter", sans-serif;
   color: var(--text-color);
   line-height: 1.5;
-
+  background: linear-gradient(to bottom, var(--background-start), var(--background-end));
 }
 
 /* Main container */
@@ -34,6 +34,9 @@ body {
   align-items: center;
   justify-content: center;
   background: linear-gradient(to bottom, var(--background-start), var(--background-end));
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  transform: translateX(100%); /* Ensure it starts off-screen */
+  opacity: 0
 }
 
 .container {
@@ -304,7 +307,7 @@ body {
 
 /* Define the reddish-orange color */
 :root {
-  --primary-color: #dc430b; /* Reddish-orange */
+  --primary-color: #eb6725; /* Reddish-orange */
   --primary-dark: #d9531e; /* Slightly darker shade for hover effects */
   --text-color: #1f2937;
   --text-muted: #6b7280;

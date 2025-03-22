@@ -23,6 +23,7 @@
     font-family: "Inter", sans-serif;
     color: var(--text-color);
     line-height: 1.5;
+    background: linear-gradient(to bottom, var(--background-start), var(--background-end));
   }
   
   /* Main container */
@@ -33,6 +34,9 @@
     align-items: center;
     justify-content: center;
     background: linear-gradient(to bottom, var(--background-start), var(--background-end));
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+    transform: translateX(100%); /* Ensure it starts off-screen */
+    opacity: 0
   }
   
   .container {
