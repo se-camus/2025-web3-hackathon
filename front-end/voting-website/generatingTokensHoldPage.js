@@ -35,14 +35,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           return { provider, signer, address };
       } catch (error) {
           console.error('Error connecting wallet:', error);
-          if (error.message.includes('MetaMask is not installed')) {
-              updateStatus("Please install MetaMask to continue");
-              setTimeout(() => {
-                  window.location.href = 'https://metamask.io/download/';
-              }, 3000);
-          } else {
-              updateStatus("Failed to connect wallet. Please try again.");
-          }
       }
   };
 
