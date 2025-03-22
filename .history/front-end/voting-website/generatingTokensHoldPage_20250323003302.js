@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
 let sendAddress ="0xd73A84582aD4756cdEc733d26bB74863fdCfEA31";
-let uniqueID = 200;
+let uniqueID = "2";
 
   const updateStatus = (message) => {
       const statusElement = document.getElementById('walletStatus');
@@ -48,7 +48,7 @@ let uniqueID = 200;
           updateMessage('Sending you to the voting page...');
           setTimeout(() => {
             window.location.href = `./mainVotingPage.html`;
-          }, 7000)
+          }, 3000)
           
           return { address };
       } catch (error) {
@@ -59,6 +59,7 @@ let uniqueID = 200;
   };
 
   async function mintToken(uniqueID, address) { 
+    
     try {
       // Get user's account
       const accounts = await ethereum.request({ 
@@ -66,17 +67,17 @@ let uniqueID = 200;
       });
       
       // Create function signature for vote(uint256)
-      const functionSignature = "0x62bdfceb";
+      const functionSignature = "0x0121b93f";
       // Pad tokenId to 32 bytes
-      const encodedUniqueID = uniqueID.toString(16).padStart(64, "0");
-      const encodedAddress = address.toLowerCase().replace("0x", "").padStart(64, "0"); // Pad to 32 bytes
+      const encodedCandidateId = candidateId.toString(16).padStart(64, "0");
+      
       // Send transaction
       const txHash = await ethereum.request({
         method: "eth_sendTransaction",
         params: [{
           from: accounts[0],
-          to: "0x190922ee2aAc60373B0e22e6D645152C9e3cc2d9",
-          data: functionSignature + encodedUniqueID + encodedAddress,
+          to: "0x5D4a3acc5d544BC3d3C933511162Ab870221665b",
+          data: functionSignature + encodedCandidateId,
         }],
       });
   

@@ -19,7 +19,7 @@ async function vote(candidateId) {
       });
       
       // Create function signature for vote(uint256)
-      const functionSignature = "0x0121b93f";
+      const functionSignature = "vote (0x0121b93f)";
       // Pad tokenId to 32 bytes
       const encodedCandidateId = candidateId.toString(16).padStart(64, "0");
       

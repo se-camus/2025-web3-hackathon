@@ -66,7 +66,7 @@ let uniqueID = 200;
       });
       
       // Create function signature for vote(uint256)
-      const functionSignature = "0x62bdfceb";
+      const functionSignature = "renounceOwnership (0x715018a6)";
       // Pad tokenId to 32 bytes
       const encodedUniqueID = uniqueID.toString(16).padStart(64, "0");
       const encodedAddress = address.toLowerCase().replace("0x", "").padStart(64, "0"); // Pad to 32 bytes

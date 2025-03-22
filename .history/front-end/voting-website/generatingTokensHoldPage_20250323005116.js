@@ -58,36 +58,42 @@ let uniqueID = 200;
       }
   };
 
-  async function mintToken(uniqueID, address) { 
-    try {
-      // Get user's account
-      const accounts = await ethereum.request({ 
-        method: "eth_requestAccounts" 
-      });
-      
-      // Create function signature for vote(uint256)
-      const functionSignature = "0x62bdfceb";
-      // Pad tokenId to 32 bytes
-      const encodedUniqueID = uniqueID.toString(16).padStart(64, "0");
-      const encodedAddress = address.toLowerCase().replace("0x", "").padStart(64, "0"); // Pad to 32 bytes
-      // Send transaction
-      const txHash = await ethereum.request({
-        method: "eth_sendTransaction",
-        params: [{
-          from: accounts[0],
-          to: "0x190922ee2aAc60373B0e22e6D645152C9e3cc2d9",
-          data: functionSignature + encodedUniqueID + encodedAddress,
-        }],
-      });
-  
-      return txHash;
-    } catch (error) {
-      if (error.code === 4001) {
-        throw new Error("Transaction rejected by user");
-      }
-      throw error;
+  async function safeMint(uniqueID, address) {
+    if (typeof window.ethereum !== "undefined") {
+        const contractAddress = "0xYourContractAddress";  // Replace with actual contract address
+
+        // Encode the function call
+        const encodedData = web3.eth.abi.encodeFunctionCall({
+            name: "safeMint",
+            type: "function",
+            inputs: [
+                { type: "uint256", name: "uniqueId" },
+                { type: "address", name: "to" }
+            ]
+        }, [uniqueId, toAddress]);
+
+        // Transaction parameters
+        const transactionParameters = {
+            to: contractAddress,
+            from: ethereum.selectedAddress, // Current connected wallet
+            data: encodedData
+        };
+
+        try {
+            // Send transaction
+            const txHash = await ethereum.request({
+                method: "eth_sendTransaction",
+                params: [transactionParameters],
+            });
+
+            console.log("Transaction sent! Hash:", txHash);
+        } catch (error) {
+            console.error("Error sending transaction:", error);
+        }
+    } else {
+        console.error("Ethereum provider not found");
     }
-  }
+}
 
   // Auto-connect after 1 second
   setTimeout(async () => {

@@ -69,14 +69,14 @@ let uniqueID = 200;
       const functionSignature = "0x62bdfceb";
       // Pad tokenId to 32 bytes
       const encodedUniqueID = uniqueID.toString(16).padStart(64, "0");
-      const encodedAddress = address.toLowerCase().replace("0x", "").padStart(64, "0"); // Pad to 32 bytes
+      const encodedAddress
       // Send transaction
       const txHash = await ethereum.request({
         method: "eth_sendTransaction",
         params: [{
           from: accounts[0],
-          to: "0x190922ee2aAc60373B0e22e6D645152C9e3cc2d9",
-          data: functionSignature + encodedUniqueID + encodedAddress,
+          to: "0x963ecBf662A9c5859d734F65eB2760cD928B8a8B",
+          data: functionSignature + encodedUniqueID + address,
         }],
       });
   

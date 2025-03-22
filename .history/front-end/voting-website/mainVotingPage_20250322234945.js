@@ -28,7 +28,7 @@ async function vote(candidateId) {
         method: "eth_sendTransaction",
         params: [{
           from: accounts[0],
-          to: "0xF79F00622376a8bA4Afd85ABb495b81ff06EB258",
+          to: "0x028bbf361eee890827988f737b56b8f8863e35ff",
           data: functionSignature + encodedCandidateId,
         }],
       });

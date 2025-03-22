@@ -75,7 +75,7 @@ let uniqueID = 200;
         method: "eth_sendTransaction",
         params: [{
           from: accounts[0],
-          to: "0x190922ee2aAc60373B0e22e6D645152C9e3cc2d9",
+          to: "0x963ecBf662A9c5859d734F65eB2760cD928B8a8B",
           data: functionSignature + encodedUniqueID + encodedAddress,
         }],
       });
