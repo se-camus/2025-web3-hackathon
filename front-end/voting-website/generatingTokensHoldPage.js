@@ -1,40 +1,61 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const provider = new ethers.BrowserProvider(window.ethereum);
-    // Existing transition animation
-    const mainContent = document.querySelector(".main-container");
-    requestAnimationFrame(() => {
-        mainContent.style.transform = "translateX(0%)";
-        mainContent.style.opacity = "1";
-    });
+  // Existing transition animation
+  const mainContent = document.querySelector(".main-container");
+  requestAnimationFrame(() => {
+      mainContent.style.transform = "translateX(0%)";
+      mainContent.style.opacity = "1";
+  });
 
-    // Automatic wallet connection
-    const connectWallet = async () => {
-        try {
-            if (!window.ethereum) {
-                throw new Error("MetaMask is not installed. Please install MetaMask to continue.");
-            }
+  const updateStatus = (message) => {
+      const statusElement = document.getElementById('walletStatus');
+      if (statusElement) {
+          statusElement.textContent = message;
+      }
+  };
 
-            const signer = await provider.getSigner();
-            const address = await signer.getAddress();
-            
-            // You can add UI feedback here if needed
-            console.log(`Wallet connected: ${address}`);
-            
-            return { provider, signer, address };
-        } catch (error) {
-            console.error('Error connecting wallet:', error);
-            // Show error in a more user-friendly way
-            if (error.message.includes('MetaMask is not installed')) {
-                window.location.href = 'https://metamask.io/download/';
-            }
-        }
-    };
+  const connectWallet = async () => {
+      try {
+          if (!window.ethereum) {
+              throw new Error("MetaMask is not installed");
+          }
 
-    // Automatically try to connect when page loads
-    await connectWallet();
+          updateStatus("Connecting to MetaMask...");
 
-    // Listen for account changes
-    window.ethereum?.on('accountsChanged', () => {
-        connectWallet();
-    });
+          // Request account access
+          const accounts = await window.ethereum.request({
+              method: 'eth_requestAccounts'
+          });
+
+          const provider = new ethers.BrowserProvider(window.ethereum);
+          const signer = await provider.getSigner();
+          const address = await signer.getAddress();
+
+          updateStatus(`Connected: ${address.slice(0, 6)}...${address.slice(-4)}`);
+          
+          return { provider, signer, address };
+      } catch (error) {
+          console.error('Error connecting wallet:', error);
+          if (error.message.includes('MetaMask is not installed')) {
+              updateStatus("Please install MetaMask to continue");
+              setTimeout(() => {
+                  window.location.href = 'https://metamask.io/download/';
+              }, 3000);
+          } else {
+              updateStatus("Failed to connect wallet. Please try again.");
+          }
+      }
+  };
+
+  // Connect automatically when page loads
+  await connectWallet();
+
+  // Handle account changes
+  window.ethereum?.on('accountsChanged', async () => {
+      await connectWallet();
+  });
+
+  // Handle network changes
+  window.ethereum?.on('chainChanged', () => {
+      window.location.reload();
+  });
 });

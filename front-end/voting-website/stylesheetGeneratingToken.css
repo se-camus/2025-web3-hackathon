@@ -269,3 +269,11 @@
     font-weight: 500;
     color: var(--text-color);
   }  
+  
+  .wallet-status {
+    margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
