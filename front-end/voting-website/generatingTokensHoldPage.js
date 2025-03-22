@@ -13,7 +13,15 @@ let uniqueID = "2";
           statusElement.textContent = message;
       }
   };
+  // Add a button to connect the wallet
+  const connectButton = document.createElement('button');
+  connectButton.textContent = "Connect Wallet"; 
+  connectButton.className = "button"; // Assuming the button in mainVotingPage.html has this class
+  connectButton.style.marginTop = "20px"; // Adjust as needed to position below the spinner
 
+  connectButton.addEventListener('click', async () => {
+    await connectWallet();
+});
   const connectWallet = async () => {
       try {
           if (!window.ethereum) {
@@ -34,43 +42,7 @@ let uniqueID = "2";
           updateStatus('Error connecting wallet');
           throw error;
       }
-  };
-
-//      // Contract interaction using MetaMask's native methods
-//      const contractAddress = "0x45E654E9Bd6921c444287D85530cD1f5072df711";
-          
-//      // Encode the function call
-//      const encodedFunction = {
-//          from: address,
-//          to: contractAddress,
-//          data: `0x${abi.encodeFunctionData('safeMint', [uniqueID, sendAddress]).slice(2)}`
-//      };
-
-//      // Send the transaction
-//      const result = await window.ethereum.request({
-//          method: 'eth_sendTransaction',
-//          params: [encodedFunction],
-//      });
-
-//      console.log("Transaction hash:", result);
-     
-//      // Navigate to home page after successful transaction
-//      window.location.href = "../index.html";
-     
-//      return { address };
-//  } catch (error) {
-//      console.error('Error:', error);
-//  }
-
-  // Add a button to connect the wallet
-  const connectButton = document.createElement('button');
-  connectButton.textContent = "Connect Wallet";
-  connectButton.className = "button"; // Assuming the button in mainVotingPage.html has this class
-  connectButton.style.marginTop = "20px"; // Adjust as needed to position below the spinner
-
-  connectButton.addEventListener('click', async () => {
-      await connectWallet();
-  });
+};
 
   // Handle account changes
   window.ethereum?.on('accountsChanged', async () => {
