@@ -9,7 +9,7 @@ contract RealMeToken is ERC721, Ownable {
     mapping(uint256 => bool) private _uniqueIdUsed;
 
     constructor(address initialOwner)
-        ERC721("mytoken4", "MTK")
+        ERC721("RealMeToken", "MTK")
         Ownable(initialOwner)
     {
         transferOwnership(initialOwner);
