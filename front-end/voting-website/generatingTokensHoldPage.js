@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", async () => {
   // Existing transition animation
   const mainContent = document.querySelector(".main-container");
@@ -40,8 +39,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
   };
 
-  // Connect automatically when page loads
-  await connectWallet();
+  // Add a button to connect the wallet
+  const connectButton = document.createElement('button');
+  connectButton.textContent = "Connect Wallet";
+  connectButton.addEventListener('click', async () => {
+      await connectWallet();
+  });
+  document.body.appendChild(connectButton);
 
   // Handle account changes
   window.ethereum?.on('accountsChanged', async () => {
