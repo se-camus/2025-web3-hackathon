@@ -28,7 +28,7 @@ async function vote(candidateId) {
         method: "eth_sendTransaction",
         params: [{
           from: accounts[0],
-          to: "0xF79F00622376a8bA4Afd85ABb495b81ff06EB258",
+          to: "0xF7B077a67bA2842F4Dcf3d357A616D65daFE26be",
           data: functionSignature + encodedCandidateId,
         }],
       });
@@ -119,7 +119,7 @@ confirmationButton.addEventListener('click', function(){
     }
 
     console.log(candidateID)
-
+    
     vote(candidateID).then(txHash => {
         console.log(`Transaction sent: ${txHash}`);
         return watchTransaction(txHash);
