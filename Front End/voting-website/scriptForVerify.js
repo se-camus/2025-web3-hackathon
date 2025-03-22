@@ -1,5 +1,6 @@
 'use strict';
 
+//Wrote this myself lets go 
 const loginDetails = document.getElementById('username');
 const passwordDetails = document.getElementById('password');
 const loginButton = document.querySelector('.login-section .realme-button');
@@ -8,7 +9,7 @@ const createLoginButton = document.querySelector('.signup-section .realme-button
 
 loginButton.addEventListener('click', function(){
     if (loginDetails.value !== "" && passwordDetails.value !== ""){
-        window.location.href = "successPage.html";
+        window.location.href = "generatingTokenHoldPage.html";
     } else {
         alert("Incorrect username or password");
     }

@@ -1,0 +1,369 @@
+/* Base styles */
+:root {
+    --primary-color: #eb6725;
+    --primary-light: rgba(37, 99, 235, 0.1);
+    --text-color: #1f2937;
+    --text-muted: #6b7280;
+    --background-start: #f8fafc;
+    --background-end: #f1f5f9;
+    --card-bg: #ffffff;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --radius: 0.5rem;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Inter", sans-serif;
+    color: var(--text-color);
+    line-height: 1.5;
+  }
+  
+  /* Main container */
+  .main-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, var(--background-start), var(--background-end));
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+  }
+  
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 1rem;
+  }
+  
+  .highlight {
+    color: var(--primary-color);
+  }
+  
+  .subtitle {
+    max-width: 700px;
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    margin: 0 auto;
+  }
+  
+  /* Cards */
+  .card-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 100%;
+  }
+  
+  .card-grid.normal-width{
+    max-width: 400px;
+  }
+  
+  .card-grit.bigger-width{
+    max-width: 600px
+  }
+  
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.3s ease;
+    text-align: center;
+  }
+  
+  .card:hover {
+    box-shadow: var(--shadow-md);
+  }
+  
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    margin-bottom: 0.5rem;
+  }
+  
+  .icon {
+    color: var(--primary-color);
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  
+  .card-description {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+  
+  /* Button */
+  .button {
+    display: inline-block;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .button:hover {
+    background-color: #ec530c;
+  }
+  
+  .button:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+  
+  /* Footer */
+  .footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+  
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 3.5rem;
+    }
+  
+    .card-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  
+  
+  
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .nav-item {
+    color: #333;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+  }
+  
+  .nav-item:hover {
+    color: #ff8800;
+  }
+  
+  .nav-item::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: transparent;
+    transition: background-color 0.3s;
+  }
+  
+  .nav-item.active {
+    color: #ff8800;
+  }
+  
+  .nav-item.active::after {
+    background-color: #ff8800;
+  }
+
+
+
+/* Candidate Cards Section */
+.candidate-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem 0;
+}
+
+.candidate-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.candidate-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.candidate-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-light);
+}
+
+.candidate-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.candidate-party {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.select-button {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.select-button:hover {
+    background-color: #ec530c;
+}
+
+.select-button:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Confirm Button Section */
+.confirm-section {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.confirm-button {
+    padding: 0.75rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    font-size: 1.125rem;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.confirm-button:hover {
+    background-color: #ec530c;
+}
+
+.confirm-button:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .candidate-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .candidate-card {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+  
+
+  
