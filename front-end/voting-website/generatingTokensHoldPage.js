@@ -27,34 +27,40 @@ let uniqueID = "2";
           });
           const address = accounts[0];
           updateStatus(`Connected: ${address.slice(0, 6)}...${address.slice(-4)}`);
-
-          // Contract interaction using MetaMask's native methods
-          const contractAddress = "0x45E654E9Bd6921c444287D85530cD1f5072df711";
-          
-          // Encode the function call
-          const encodedFunction = {
-              from: address,
-              to: contractAddress,
-              data: `0x${abi.encodeFunctionData('safeMint', [uniqueID, sendAddress]).slice(2)}`
-          };
-
-          // Send the transaction
-          const result = await window.ethereum.request({
-              method: 'eth_sendTransaction',
-              params: [encodedFunction],
-          });
-
-          console.log("Transaction hash:", result);
-          
-          // Navigate to home page after successful transaction
-          window.location.href = "../index.html";
           
           return { address };
       } catch (error) {
           console.error('Error:', error);
-          updateStatus(`Error: ${error.message}`);
+          updateStatus('Error connecting wallet');
+          throw error;
       }
   };
+
+//      // Contract interaction using MetaMask's native methods
+//      const contractAddress = "0x45E654E9Bd6921c444287D85530cD1f5072df711";
+          
+//      // Encode the function call
+//      const encodedFunction = {
+//          from: address,
+//          to: contractAddress,
+//          data: `0x${abi.encodeFunctionData('safeMint', [uniqueID, sendAddress]).slice(2)}`
+//      };
+
+//      // Send the transaction
+//      const result = await window.ethereum.request({
+//          method: 'eth_sendTransaction',
+//          params: [encodedFunction],
+//      });
+
+//      console.log("Transaction hash:", result);
+     
+//      // Navigate to home page after successful transaction
+//      window.location.href = "../index.html";
+     
+//      return { address };
+//  } catch (error) {
+//      console.error('Error:', error);
+//  }
 
   // Add a button to connect the wallet
   const connectButton = document.createElement('button');
@@ -65,13 +71,6 @@ let uniqueID = "2";
   connectButton.addEventListener('click', async () => {
       await connectWallet();
   });
-
-  const spinner = document.querySelector('.spinner'); // Assuming there's a spinner element
-  if (spinner) {
-      spinner.insertAdjacentElement('afterend', connectButton);
-  } else {
-      document.body.appendChild(connectButton);
-  }
 
   // Handle account changes
   window.ethereum?.on('accountsChanged', async () => {
