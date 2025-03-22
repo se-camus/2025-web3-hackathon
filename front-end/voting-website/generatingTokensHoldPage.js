@@ -1,6 +1,5 @@
-import { ethers } from 'ethers';
-
 document.addEventListener("DOMContentLoaded", async () => {
+  const provider = new ethers.BrowserProvider(window.ethereum);
     // Existing transition animation
     const mainContent = document.querySelector(".main-container");
     requestAnimationFrame(() => {
@@ -15,7 +14,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 throw new Error("MetaMask is not installed. Please install MetaMask to continue.");
             }
 
-            const provider = new ethers.BrowserProvider(window.ethereum);
             const signer = await provider.getSigner();
             const address = await signer.getAddress();
             
