@@ -11,14 +11,24 @@
 <!-- nav bar -->
   <nav class="navbar">
     <div class="logo">
-      <a href="index.html">YourLogo</a>
+      <a href="index.html">YourVote</a>
     </div>
     <div class="nav-links">
       <a class="nav-item" onclick="slideContent('index.html')" data-page="home">Vote</a>
-      <a href="about.html" class="nav-item active" data-page="about">How it works</a>
-    </div>
+      <a class="nav-item active" data-page="about">How it works</a>
+  </div>
+    <button class="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
   </nav>
 
+  <div class="sidebar" id="sidebar">
+    <a onclick="hideThenSlide('index.html')">Home</a>
+    <a onclick="hideSide()"class="active">About</a>
+</div>
+<div class="overlay" id="overlay"></div>
   <main class="main-container">
 <!-- nav bar ends-->
     <div class="container">

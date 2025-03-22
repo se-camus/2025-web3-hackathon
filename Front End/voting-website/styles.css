@@ -205,20 +205,6 @@ body {
   text-decoration: underline;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .title {
-    font-size: 3.5rem;
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-
-
-
 
 /* Navbar */
 .navbar {
@@ -252,8 +238,13 @@ body {
   padding: 0.5rem 1rem;
   margin: 0 0.5rem;
   font-weight: 500;
+  font-size: 14pt;
   position: relative;
   transition: color 0.3s;
+}
+
+.nav-item.mobile{
+  display:hide;
 }
 
 .nav-item:hover {
@@ -277,4 +268,113 @@ body {
 
 .nav-item.active::after {
   background-color: #ff8800;
+}
+
+
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+/* Mobile response */
+/* General styles */
+
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+.hamburger div {
+  width: 100%;
+  height: 4px;
+  background-color: black;
+  margin: 6px 0;
+  transition: 0.3s;
+}
+@media (max-width: 768px) {
+  .hamburger {
+      display: block;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .nav-links {
+      display: none;
+  }
+
+  .hamburger {
+      display: block;
+  }
+}
+
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100%;
+  background: #eeeeee;
+  color: white;
+  padding-top: 60px;
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.sidebar a {
+  display: block;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  padding: 15px 20px;
+  font-size: 18px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.sidebar a.active {
+  color:#eb6725
+}
+
+.sidebar a:hover {
+  background: #e0bf9f;
+}
+
+
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+/* Show sidebar and overlay */
+.sidebar.open {
+  right: 0;
+}
+
+.overlay.show {
+  display: block;
 }

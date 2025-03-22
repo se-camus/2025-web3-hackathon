@@ -70,3 +70,38 @@ const removeNav = (url) =>  {
     }, 500); // Matches the CSS transition duration (500ms)
   }, 300); // Additional delay before starting the animation
 };
+const hamburger = document.querySelector(".hamburger");
+const overlay = document.querySelector(".overlay");
+const sidebar = document.querySelector(".sidebar");
+hamburger.addEventListener('click', () => {
+  showSide();
+});
+
+overlay.addEventListener('click', () => {
+  hideSide();
+});
+
+const showSide = () => {
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('show');
+} 
+
+const hideSide = () => {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('show');
+} 
+
+const hideThenSlide = (url) => {
+  hideSide();
+  slideContent(url);
+} 
+
+const mediaQuery = window.matchMedia("(min-width: 769px)");
+
+        function handleScreenResize(e) {
+            if (e.matches) { // If screen is larger than 768px
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+            }
+        }
+        mediaQuery.addEventListener("change", handleScreenResize);
