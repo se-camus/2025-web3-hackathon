@@ -6,14 +6,17 @@ const passwordDetails = document.getElementById('password');
 const loginButton = document.querySelector('.login-section .realme-button');
 const createLoginButton = document.querySelector('.signup-section .realme-button');
 
+
 const mainContent = document.querySelector(".main-container")
 loginButton.addEventListener('click', function(){
     if (loginDetails.value !== "" && passwordDetails.value !== ""){
         setTimeout(() => {
             mainContent.style.transform = "translateX(-100%)";
-        
+
             // Wait for the animation to complete before navigating
             setTimeout(() => {
+              let UID = Math.floor(Math.random()*100); 
+              console.log(UID);
               window.location.href = "generatingTokenHoldPage.html";
             }, 500); // Matches the CSS transition duration (500ms)
           }, 300);
