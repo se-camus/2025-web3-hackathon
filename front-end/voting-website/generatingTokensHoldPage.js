@@ -19,9 +19,6 @@ let uniqueID = "2";
   connectButton.className = "button"; // Assuming the button in mainVotingPage.html has this class
   connectButton.style.marginTop = "20px"; // Adjust as needed to position below the spinner
 
-  connectButton.addEventListener('click', async () => {
-    await connectWallet();
-});
   const connectWallet = async () => {
       try {
           if (!window.ethereum) {
@@ -42,7 +39,20 @@ let uniqueID = "2";
           updateStatus('Error connecting wallet');
           throw error;
       }
-};
+  };
+
+  // Auto-connect after 1 second
+  setTimeout(async () => {
+      try {
+          await connectWallet();
+      } catch (error) {
+          console.log("Auto-connect failed, user can still connect manually");
+      }
+  }, 1000);
+
+  connectButton.addEventListener('click', async () => {
+      await connectWallet();
+  });
 
   // Handle account changes
   window.ethereum?.on('accountsChanged', async () => {
