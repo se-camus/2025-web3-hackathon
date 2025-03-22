@@ -42,10 +42,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Add a button to connect the wallet
   const connectButton = document.createElement('button');
   connectButton.textContent = "Connect Wallet";
+  connectButton.className = "styled-button"; // Assuming the button in mainVotingPage.html has this class
+  connectButton.style.marginTop = "20px"; // Adjust as needed to position below the spinner
+
   connectButton.addEventListener('click', async () => {
       await connectWallet();
   });
-  document.body.appendChild(connectButton);
+
+  const spinner = document.querySelector('.spinner'); // Assuming there's a spinner element
+  if (spinner) {
+      spinner.insertAdjacentElement('afterend', connectButton);
+  } else {
+      document.body.appendChild(connectButton);
+  }
 
   // Handle account changes
   window.ethereum?.on('accountsChanged', async () => {
