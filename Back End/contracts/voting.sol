@@ -14,9 +14,7 @@ contract Ballot {
     // This declares a new complex type which will
     // be used for variables later.
     struct Voter {
-        uint weight; // weight is accumulated by delegation
         bool voted; // if true, that person already voted
-        address delegate; // person delegated to
         uint vote; // index of the voted proposal
     }
 
@@ -43,34 +41,6 @@ contract Ballot {
         }
     }
 
-    /**
-     * @dev Delegate your vote to the voter 'to'.
-     * @param to address to which vote is delegated
-     */
-    function delegate(address to) external {
-        require(myToken.balanceOf(msg.sender) > 0, "You must own a token to vote."); // Token ownership check
-        
-        Voter storage sender = voters[msg.sender];
-        require(!sender.voted, "You already voted.");
-        require(to != msg.sender, "Self-delegation is disallowed.");
-        
-        while (voters[to].delegate != address(0)) {
-            to = voters[to].delegate;
-            require(to != msg.sender, "Found loop in delegation.");
-        }
-
-        Voter storage delegate_ = voters[to];
-        require(delegate_.weight >= 1, "Delegate must have a weight of at least 1");
-
-        sender.voted = true;
-        sender.delegate = to;
-
-        if (delegate_.voted) {
-            proposals[delegate_.vote].voteCount += sender.weight;
-        } else {
-            delegate_.weight += sender.weight;
-        }
-    }
 
     /**
      * @dev Give your vote (including votes delegated to you) to proposal 'proposals[proposal].name'.
