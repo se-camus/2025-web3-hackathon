@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           });
 
           // const provider = new ethers.BrowserProvider(window.ethereum);
-          console.log(ethers);
+          // console.log(ethers);
           const signer = await provider.getSigner();
           const address = await signer.getAddress();
 
