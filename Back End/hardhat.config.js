@@ -8,6 +8,15 @@ module.exports = {
       { version: "0.8.28" }
     ],
   },
+  solidity: {
+    version: "0.8.22", // Explicitly set the version
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200,
+      }
+    }
+  },
   networks: {
     sepolia: {
       url: process.env.SEPOLIA_RPC_URL || "",
