@@ -23,16 +23,21 @@ body {
   font-family: "Inter", sans-serif;
   color: var(--text-color);
   line-height: 1.5;
+  background: linear-gradient(to bottom, var(--background-start), var(--background-end));
 }
 
 /* Main container */
 .main-container {
   min-height: 100vh;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background: linear-gradient(to bottom, var(--background-start), var(--background-end));
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  transform: translateX(100%); /* Ensure it starts off-screen */
+  opacity: 0
 }
 
 .container {
@@ -84,7 +89,7 @@ body {
   max-width: 400px;
 }
 
-.card-grit.bigger-width{
+.card-grid.bigger-width{
   max-width: 600px
 }
 
@@ -92,7 +97,7 @@ body {
 .card {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   gap: 1rem;
   padding: 2rem;
   background-color: var(--card-bg);
@@ -100,7 +105,7 @@ body {
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
   transition: box-shadow 0.3s ease;
-  text-align: center;
+  text-align: left;
 }
 
 .card:hover {
@@ -147,6 +152,15 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
   text-decoration: none;
+  text-align:center;
+}
+
+.button.full {
+  width: 100%;
+}
+
+.button.half {
+  width: 50%;
 }
 
 .button:hover {
@@ -205,6 +219,7 @@ body {
   padding: 1rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
 }
 
 .logo a {

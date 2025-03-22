@@ -34,3 +34,39 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   
 })
+
+
+// transition slide off
+const mainContent = document.querySelector(".main-container")
+const slideContent = (url) => {
+  setTimeout(() => {
+    mainContent.style.transform = "translateX(-100%)";
+
+    // Wait for the animation to complete before navigating
+    setTimeout(() => {
+      window.location.href = url;
+    }, 500); // Matches the CSS transition duration (500ms)
+  }, 300); // Additional delay before starting the animation
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const mainContent = document.querySelector(".main-container")
+  requestAnimationFrame(() => {
+    mainContent.style.transform = "translateX(0%)";
+    mainContent.style.opacity = "1"; // Ensure visibility
+  });
+});
+
+// nav bar slide up
+
+const navBar = document.querySelector(".navbar")
+const removeNav = (url) =>  {
+  setTimeout(() => {
+    navBar.style.transform = "translateY(-100%)";
+
+    // Wait for the animation to complete before navigating
+    setTimeout(() => {
+      window.location.href = url;
+    }, 500); // Matches the CSS transition duration (500ms)
+  }, 300); // Additional delay before starting the animation
+};

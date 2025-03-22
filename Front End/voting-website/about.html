@@ -14,7 +14,7 @@
       <a href="index.html">YourLogo</a>
     </div>
     <div class="nav-links">
-      <a href="index.html" class="nav-item" data-page="home">Vote</a>
+      <a class="nav-item" onclick="slideContent('index.html')" data-page="home">Vote</a>
       <a href="about.html" class="nav-item active" data-page="about">How it works</a>
     </div>
   </nav>
@@ -28,24 +28,36 @@
       
       <div class="card-grid bigger-width">
         <div class="card">
-          <h2 class="card-title">Get Verified Using RealMe</h2>
+          <h2 class="card-title">What is this about?</h2>
           <p class="card-description">
-            Verify yourself with your official RealMe Account to start your voting process 
+            We're using web3 technology to enable Kiwis to vote online. This works byyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+
+
+
+            
           </p>
-          <a href="verify.html" class="button">Everything clear? Let's vote</a>   
+
+          <h2 class="card-title"> The <span class = "highlight">technical</span> details:</h3>
+          <p class = "card-description">
+            One<br>
+            Two<br>
+            Three<br>
+
+          </p>
+          <a onclick="removeNav('verify.html')" class="button full">Everything clear? Let's vote</a>   
 <!-- Adding feature to redirect to verify page after clicking on verify button  -->
         </div>
       </div>
-      
-      <footer class="footer">
-        <p>Secure • Accessible • Transparent</p>
-        <div class="footer-links">
-          <a href="/about">About</a>
-          <a href="/help">Help</a>
-          <a href="/privacy">Privacy</a>
-        </div>
-      </footer>
+    
     </div>
+    <footer class="footer">
+      <p>Secure • Accessible • Transparent</p>
+      <div class="footer-links">
+        <a href="/about">About</a>
+        <a href="/help">Help</a>
+        <a href="/privacy">Privacy</a>
+      </div>
+    </footer>
   </main>
 
   <script src="script.js"></script>
