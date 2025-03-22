@@ -15,11 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Get the button text to determine which path to take
         const buttonText = this.textContent.trim()
 
-        if (buttonText === "Get Verified") {
-          alert("Redirecting to voter verification process...")
-          // In a real app, you would redirect to the verification page
-          // window.location.href = '/verification';
-        } //Add another conditional if we decide to add more cards/buttons
       }, 150)
     })
   
