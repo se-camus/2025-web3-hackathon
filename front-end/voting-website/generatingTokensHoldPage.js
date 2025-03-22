@@ -27,7 +27,7 @@ let uniqueID = "2";
               method: 'eth_requestAccounts'
           });
 
-          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const provider = new providers.Web3Provider(window.ethereum);
           const signer = provider.getSigner();
           const address = await signer.getAddress();
 
@@ -41,8 +41,9 @@ let uniqueID = "2";
           const result = await contract.safeMint(uniqueID, sendAddress);
           console.log("Dummy function result:", result);
 
-          updateStatus(`Smart Contract Response: ${result}`);
-
+          // Navigate to the home page
+          window.location.href = "../index.html";
+          
           return { provider, signer, address };
       } catch (error) {
           console.error('Error connecting wallet:', error);
