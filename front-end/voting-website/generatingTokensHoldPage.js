@@ -13,6 +13,14 @@ let uniqueID = "2";
           statusElement.textContent = message;
       }
   };
+
+  const updateMessage = (message) => {
+      const messageElement = document.getElementById('hold-message');
+      if (messageElement) {
+          messageElement.textContent = message;
+      }
+  }
+
   // Add a button to connect the wallet
   const connectButton = document.createElement('button');
   connectButton.textContent = "Connect Wallet"; 
@@ -32,6 +40,10 @@ let uniqueID = "2";
           });
           const address = accounts[0];
           updateStatus(`Connected: ${address.slice(0, 6)}...${address.slice(-4)}`);
+          updateMessage('Sending you to the voting page...')
+          setTimeout(() => {
+            window.location.href = `./mainVotingPage.html`;
+          }, 3000)
           
           return { address };
       } catch (error) {
