@@ -2,14 +2,14 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
-import {RealMeToken} from "./minting_contract.sol"; // Import your token contract
+import {myToken5} from "./minting_contract.sol"; // Import your token contract
 
 /**
  * @title Ballot
  * @dev Implements voting process along with vote delegation
  */
 contract Ballot {
-    RealMeToken public myToken; // Declare MyToken3 contract address
+    myToken5 public myToken; // Declare MyToken3 contract address
 
     // This declares a new complex type which will
     // be used for variables later.
@@ -35,7 +35,7 @@ contract Ballot {
      * @param tokenAddress Address of the deployed MyToken3 contract
      */
     constructor(string[] memory proposalNames, address tokenAddress) {
-        myToken = RealMeToken(tokenAddress); // Set the token contract address
+        myToken = myToken5(tokenAddress); // Set the token contract address
         
         for (uint i = 0; i < proposalNames.length; i++) {
             bytes32 proposalName = stringToBytes32(proposalNames[i]);
@@ -84,7 +84,7 @@ contract Ballot {
         sender.voted = true;
         sender.vote = proposal;
         
-        proposals[proposal].voteCount += sender.weight;
+        proposals[proposal].voteCount += 1;
     }
 
     /**
