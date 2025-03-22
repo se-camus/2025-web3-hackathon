@@ -24,6 +24,7 @@ body {
   color: var(--text-color);
   line-height: 1.5;
   background: linear-gradient(to bottom, var(--background-start), var(--background-end));
+  overflow-x:hidden;
 }
 
 /* Main container */
@@ -97,7 +98,6 @@ body {
 .card {
   display: flex;
   flex-direction: column;
-  align-items: left;
   gap: 1rem;
   padding: 2rem;
   background-color: var(--card-bg);
@@ -105,6 +105,15 @@ body {
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
   transition: box-shadow 0.3s ease;
+}
+
+.card.center {
+  align-items: center;
+  text-align: center;
+}
+
+.card.left {
+  align-items: left;
   text-align: left;
 }
 
