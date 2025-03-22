@@ -269,6 +269,7 @@
 
 .candidate-card {
     flex: 1;
+    transition: background-color 1.5s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -367,3 +368,14 @@
   
 
   
+/* Fading in and out features  */
+
+.fade-in-select {
+    opacity: 0.9; 
+    transform: scale(1.05); 
+    border-color: var(--primary-color); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+   
+    
+}
+
