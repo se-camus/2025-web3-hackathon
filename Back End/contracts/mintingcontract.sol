@@ -3,7 +3,7 @@ pragma solidity ^0.8.22;
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MyToken is ERC721, Ownable {
+contract MyToken2 is ERC721, Ownable {
     uint256 private _nextTokenId;
     mapping(uint256 => bool) private _uniqueIdUsed;
 
