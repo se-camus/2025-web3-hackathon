@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
 let sendAddress ="0xd73A84582aD4756cdEc733d26bB74863fdCfEA31";
-let uniqueID = 2023312;
+let uniqueID = 20235336;
 
   const updateStatus = (message) => {
       const statusElement = document.getElementById('walletStatus');
@@ -97,15 +97,6 @@ let uniqueID = 2023312;
           console.log("Auto-connect failed, user can still connect manually");
       }
   }, 1000);
-
-  connectButton.addEventListener('click', async () => {
-      await connectWallet();
-  });
-
-  // Handle account changes
-  window.ethereum?.on('accountsChanged', async () => {
-      await connectWallet();
-  });
 
   // Handle network changes
   window.ethereum?.on('chainChanged', () => {
