@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", async () => {
   // Existing transition animation
   const mainContent = document.querySelector(".main-container");
@@ -26,7 +27,8 @@ document.addEventListener("DOMContentLoaded", async () => {
               method: 'eth_requestAccounts'
           });
 
-          const provider = new ethers.BrowserProvider(window.ethereum);
+          // const provider = new ethers.BrowserProvider(window.ethereum);
+          console.log(ethers);
           const signer = await provider.getSigner();
           const address = await signer.getAddress();
 
