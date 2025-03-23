@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   
     let sendAddress = "0xd73A84582aD4756cdEc733d26bB74863fdCfEA31";
-    let uniqueID = 2023312;
+    let uniqueID = 20232424144;
     let hasMinted = false; // Flag to track minting status
   
     const updateStatus = (message) => {
