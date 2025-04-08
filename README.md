@@ -18,6 +18,7 @@ Welcome to the **2025 Web3 Hackathon** project repository! This project was deve
 2025-web3-hackathon/
 │── contracts/        # Solidity smart contracts
 │── frontend/         # JavaScript-based frontend
+│── ignition/         # Scripts for deploying contracts
 │── scripts/         # Deployment and interaction scripts
 │── test/            # Smart contract tests
 │── hardhat.config.js # Hardhat configuration
@@ -31,6 +32,7 @@ Ensure you have the following installed:
 - Node.js & npm
 - Hardhat
 - MetaMask (web browser extension)
+- Git Bash (Only if you are on windows)
 
 ### Installation Steps
 1. Clone the repository:
@@ -38,22 +40,9 @@ Ensure you have the following installed:
    git clone https://github.com/se-camus/2025-web3-hackathon.git
    cd 2025-web3-hackathon
    ```
-2. Install dependencies:
-   ```sh
-   npm install
+2. Run the deploy script (If you are on windows ensure you are using Git Bash):
    ```
-4.     
-4. Compile smart contracts:
-   ```sh
-   npx hardhat compile
-   ```
-5. Deploy contracts (on a testnet or local Hardhat network):
-   ```sh
-   npx hardhat run scripts/deploy.js --network <network>
-   ```
-6. Start the frontend:
-   ```sh
-   TO ADD
+   npm run deploy
    ```
 ## Deploying to the Sepolia Ethereum Testnet
 TO ADD
