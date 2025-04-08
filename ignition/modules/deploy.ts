@@ -1,9 +1,11 @@
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
-
+import * as dotenv from "dotenv";
+dotenv.config({ path: "../../.env" }); // Adjust if needed
+console.log("PUBLIC_ADDRESS:", process.env.PUBLIC_ADDRESS)
 const RealMeTokenModule = buildModule("RealMeTokenModule", (m) => {
-  // Use the existing RealMeToken contract at this address
-  // Deploy MyToken3 first
-  const realMeTokenAddress = m.contract("RealMeToken", ["0xf4a2452d358F8232236a5C3235873fbB34463303"]);
+  // Use the RealMeToken contract address from the environment variable
+  const realMeTokenAddress = m.contract("RealMeToken", [String(process.env.PUBLIC_ADDRESS)]);
+  
   // Deploy a new Ballot contract for each poll with unique IDs
   const ballot1 = m.contract(
     "Ballot",

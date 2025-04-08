@@ -19,7 +19,7 @@ else
 
   cat > .env <<EOF
 PRIVATE_KEY=$PRIVATE_KEY
-SEPOLIA_RPC=$SEPOLIA_RPC_URL
+SEPOLIA_RPC_URL=$SEPOLIA_RPC
 PUBLIC_ADDRESS=$PUBLIC_ADDRESS
 EOF
 
@@ -43,4 +43,4 @@ echo "Starting local server at http://localhost:8080/voting-website/..."
 npx serve -l 8080 . &
 
 # Open in browser (macOS)
-open "http://localhost:8080/voting-website/"
+open "http://localhost:8080/front-end/voting-website/"
