@@ -31,4 +31,11 @@ echo "Compiling contracts..."
 npx hardhat compile
 
 echo "Deploying contracts using Ignition..."
-npx hardhat ignition deploy ./ignition/modules/deploy.ts --network sepolia
+#npx hardhat ignition deploy ./ignition/modules/deploy.ts --network sepolia
+
+# Start local server to serve frontend
+echo "Starting local server at http://localhost:8080/voting-website/..."
+npx serve -l 8080 . &
+
+# Open in browser (macOS)
+open "http://localhost:8080/voting-website/"
