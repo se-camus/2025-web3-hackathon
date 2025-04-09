@@ -39,14 +39,8 @@ else
   echo "No previous deployments found."
 fi
 
-echo "Installing dependencies..."
-npm install
-
-echo "Cleaning up old artifacts..."
-npx hardhat clean
-
-echo "Compiling contracts..."
-npx hardhat compile
+echo "Running tests..."
+npx hardhat test
 
 echo "Deploying contracts using Ignition..."
 npx hardhat ignition deploy ./ignition/modules/deploy.ts --network sepolia
