@@ -8,22 +8,6 @@ cd "$(dirname "$0")/.."
 
 echo "Running from: $(pwd)"
 
-# Check if .env exists
-if [ -f ".env" ]; then
-  echo ".env file already exists. Skipping environment setup."
-else
-  echo "No .env file found. Creating one now..."
-  read -p "Enter your private key: " PRIVATE_KEY
-  read -p "Enter your Sepolia RPC URL: " SEPOLIA_RPC
-  read -p "Enter your public wallet address: " PUBLIC_ADDRESS
-  cat > .env <<EOF
-PRIVATE_KEY=$PRIVATE_KEY
-SEPOLIA_RPC_URL=$SEPOLIA_RPC
-PUBLIC_ADDRESS=$PUBLIC_ADDRESS
-EOF
-  echo ".env file created."
-fi
-
 echo "Installing dependencies..."
 npm install
 
@@ -41,6 +25,22 @@ fi
 
 echo "Running tests..."
 npx hardhat test
+
+# Check if .env exists
+if [ -f ".env" ]; then
+  echo ".env file already exists. Skipping environment setup."
+else
+  echo "No .env file found. Creating one now..."
+  read -p "Enter your private key: " PRIVATE_KEY
+  read -p "Enter your Sepolia RPC URL: " SEPOLIA_RPC
+  read -p "Enter your public wallet address: " PUBLIC_ADDRESS
+  cat > .env <<EOF
+PRIVATE_KEY=$PRIVATE_KEY
+SEPOLIA_RPC_URL=$SEPOLIA_RPC
+PUBLIC_ADDRESS=$PUBLIC_ADDRESS
+EOF
+  echo ".env file created."
+fi
 
 echo "Deploying contracts using Ignition..."
 npx hardhat ignition deploy ./ignition/modules/deploy.ts --network sepolia
