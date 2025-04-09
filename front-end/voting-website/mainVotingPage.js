@@ -21,13 +21,32 @@ loadVotingContractAddress().then(() => {
 // Load the voting contract address dynamically
 async function loadVotingContractAddress() {
     try {
-        const response = await fetch("deployed_addresses.json");
+        // Detect the chain ID dynamically
+        const chainId = await ethereum.request({ method: "eth_chainId" });
+        console.log("Detected Chain ID:", chainId);
+
+        // Construct the path to the deployed_addresses.json file based on the chain ID
+        const filePath = `../../ignition/deployments/chain-${parseInt(chainId, 16)}/deployed_addresses.json`;
+        console.log("Fetching deployed addresses from:", filePath);
+
+        // Fetch the deployed addresses
+        const response = await fetch(filePath);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch deployed_addresses.json: ${response.statusText}`);
+        }
+
         const addresses = await response.json();
         votingContractAddress = addresses["RealMeTokenModule#Ballot1"]; // Adjust key if needed
+
+        if (!votingContractAddress) {
+            throw new Error("Voting contract address not found in deployed_addresses.json");
+        }
+
         console.log("Voting Contract Address:", votingContractAddress);
     } catch (error) {
         console.error("Error loading voting contract address:", error);
-        throw new Error("Failed to load voting contract address.");
+        alert("Failed to load voting contract address. Please try again later.");
+        throw error;
     }
 }
 

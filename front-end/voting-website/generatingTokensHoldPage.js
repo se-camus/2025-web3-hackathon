@@ -25,13 +25,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const loadMintingContractAddress = async () => {
     try {
-      const response = await fetch("deployed_addresses.json");
+      // Detect the chain ID dynamically
+      const chainId = await ethereum.request({ method: "eth_chainId" });
+      console.log("Detected Chain ID:", chainId);
+    
+      // Construct the path to the deployed_addresses.json file based on the chain ID
+      const filePath = `../../ignition/deployments/chain-${parseInt(chainId, 16)}/deployed_addresses.json`;
+      console.log("Fetching deployed addresses from:", filePath);
+    
+      // Fetch the deployed addresses
+      const response = await fetch(filePath);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch deployed_addresses.json: ${response.statusText}`);
+      }
+    
       const addresses = await response.json();
       mintingContractAddress = addresses["RealMeTokenModule#RealMeToken"];
+    
+      if (!mintingContractAddress) {
+        throw new Error("Minting contract address not found in deployed_addresses.json");
+      }
+    
       console.log("Minting Contract Address:", mintingContractAddress);
     } catch (error) {
       console.error("Error loading minting contract address:", error);
-      throw new Error("Failed to load minting contract address.");
+      alert("Failed to load minting contract address. Please try again later.");
     }
   };
 

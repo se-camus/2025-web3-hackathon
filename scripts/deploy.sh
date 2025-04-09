@@ -16,14 +16,27 @@ else
   read -p "Enter your private key: " PRIVATE_KEY
   read -p "Enter your Sepolia RPC URL: " SEPOLIA_RPC
   read -p "Enter your public wallet address: " PUBLIC_ADDRESS
-
   cat > .env <<EOF
 PRIVATE_KEY=$PRIVATE_KEY
 SEPOLIA_RPC_URL=$SEPOLIA_RPC
 PUBLIC_ADDRESS=$PUBLIC_ADDRESS
 EOF
-
   echo ".env file created."
+fi
+
+echo "Installing dependencies..."
+npm install
+
+echo "Cleaning up old artifacts..."
+npx hardhat clean
+
+# Delete previous deployments
+echo "Deleting previous deployments..."
+if [ -d "ignition/deployments" ]; then
+  rm -rf ignition/deployments
+  echo "Previous deployments deleted."
+else
+  echo "No previous deployments found."
 fi
 
 echo "Installing dependencies..."
