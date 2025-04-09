@@ -47,8 +47,6 @@ Ensure you have the following installed:
    npm run deploy
    ```
 5. Input the private key, RPC URL and public key
-## Deploying to the Sepolia Ethereum Testnet
-TO ADD
 
 ## 🗳️ How It Works
 1. **User Authentication with SBT:** Each participant is issued a **Soulbound Token (SBT)**, which acts as proof of identity and eligibility to vote.
