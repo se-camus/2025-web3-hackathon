@@ -24,15 +24,15 @@ Welcome to the **2025 Web3 Hackathon** project repository! This project was deve
 │── hardhat.config.js # Hardhat configuration
 │── package.json     # Project dependencies
 │── README.md        # This file
+│── Working Demo.mp4 # Video of the working demo
 ```
 
 ## 🔧 Setup & Installation
 ### Prerequisites
 Ensure you have the following installed:
 - Node.js & npm
-- Hardhat
 - MetaMask (web browser extension)
-- Git Bash (Only if you are on windows)
+- Git Bash (Only if you are on Windows)
 
 ### Installation Steps
 1. Clone the repository:
@@ -40,10 +40,13 @@ Ensure you have the following installed:
    git clone https://github.com/se-camus/2025-web3-hackathon.git
    cd 2025-web3-hackathon
    ```
-2. Run the deploy script (If you are on windows ensure you are using Git Bash):
+2. Obtain your private and public key for the wallet you want to be the Governing entity
+3. Obtain your RPC URL for Ethereum Sepolia through Alchemy or Infura
+4. Run the deploy script (If you are on windows ensure you are using Git Bash):
    ```
    npm run deploy
    ```
+5. Input the private key, RPC URL and public key
 ## Deploying to the Sepolia Ethereum Testnet
 TO ADD
 
