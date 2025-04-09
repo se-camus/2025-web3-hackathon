@@ -14,7 +14,7 @@ node_modules
 /coverage.json
 
 
-/deployments
+ignition/deployments
 
 # macOS files
 .DS_Store
