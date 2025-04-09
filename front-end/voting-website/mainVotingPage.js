@@ -9,66 +9,90 @@ let candidate2Vote = 0;
 let candidate3Vote = 0;
 let candidate4Vote = 0; 
 
-let selectState = null; //Start with no candidate selected 
+let selectState = null; // Start with no candidate selected 
+let votingContractAddress;
+// Load the voting contract address before any interaction
+loadVotingContractAddress().then(() => {
+    console.log("Voting contract address loaded successfully.");
+}).catch(error => {
+    console.error("Failed to load voting contract address:", error);
+});
+
+// Load the voting contract address dynamically
+async function loadVotingContractAddress() {
+    try {
+        const response = await fetch("deployed_addresses.json");
+        const addresses = await response.json();
+        votingContractAddress = addresses["RealMeTokenModule#Ballot1"]; // Adjust key if needed
+        console.log("Voting Contract Address:", votingContractAddress);
+    } catch (error) {
+        console.error("Error loading voting contract address:", error);
+        throw new Error("Failed to load voting contract address.");
+    }
+}
 
 async function vote(candidateId) {
     try {
-      // Get user's account
-      const accounts = await ethereum.request({ 
-        method: "eth_requestAccounts" 
-      });
-      
-      // Create function signature for vote(uint256)
-      const functionSignature = "0x0121b93f";
-      // Pad tokenId to 32 bytes
-      const encodedCandidateId = candidateId.toString(16).padStart(64, "0");
-      
-      // Send transaction
-      const txHash = await ethereum.request({
-        method: "eth_sendTransaction",
-        params: [{
-          from: accounts[0],
-          to: "0xF011043B18900dE5cbd1Ef864d9495b59c87c405",
-          data: functionSignature + encodedCandidateId,
-        }],
-      });
-  
-      return txHash;
+        // Get user's account
+        const accounts = await ethereum.request({ 
+            method: "eth_requestAccounts" 
+        });
+        
+        // Create function signature for vote(uint256)
+        const functionSignature = "0x0121b93f";
+        // Pad tokenId to 32 bytes
+        const encodedCandidateId = candidateId.toString(16).padStart(64, "0");
+        console.log("Transaction Details:");
+        console.log("From:", accounts[0]);
+        console.log("To:", votingContractAddress);
+        console.log("Data:", functionSignature + encodedCandidateId);
+        // Send transaction
+        const txHash = await ethereum.request({
+            method: "eth_sendTransaction",
+            params: [{
+                from: accounts[0],
+                to: votingContractAddress, // Use the dynamically loaded voting contract address
+                data: functionSignature + encodedCandidateId,
+            }],
+        });
+
+
+        return txHash;
     } catch (error) {
-      if (error.code === 4001) {
-        throw new Error("Transaction rejected by user");
-      }
-      throw error;
-    }
-  }
-  
-  // Track transaction status
-  async function watchTransaction(txHash) {
-    return new Promise((resolve, reject) => {
-      const checkTransaction = async () => {
-        try {
-          const tx = await ethereum.request({
-            method: "eth_getTransactionReceipt",
-            params: [txHash],
-          });
-  
-          if (tx) {
-            if (tx.status === "0x1") {
-              resolve(tx);
-            } else {
-              reject(new Error("Transaction failed"));
-            }
-          } else {
-            setTimeout(checkTransaction, 2000);
-          }
-        } catch (error) {
-          reject(error);
+        if (error.code === 4001) {
+            throw new Error("Transaction rejected by user");
         }
-      };
-  
-      checkTransaction();
+        throw error;
+    }
+}
+
+// Track transaction status
+async function watchTransaction(txHash) {
+    return new Promise((resolve, reject) => {
+        const checkTransaction = async () => {
+            try {
+                const tx = await ethereum.request({
+                    method: "eth_getTransactionReceipt",
+                    params: [txHash],
+                });
+
+                if (tx) {
+                    if (tx.status === "0x1") {
+                        resolve(tx);
+                    } else {
+                        reject(new Error("Transaction failed"));
+                    }
+                } else {
+                    setTimeout(checkTransaction, 2000);
+                }
+            } catch (error) {
+                reject(error);
+            }
+        };
+
+        checkTransaction();
     });
-  }
+}
 
 selectingButtons.forEach(button => {
     button.addEventListener('click', function(){
