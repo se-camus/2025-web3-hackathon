@@ -49,5 +49,12 @@ npx hardhat ignition deploy ./ignition/modules/deploy.ts --network sepolia
 echo "Starting local server at http://localhost:8080/voting-website/..."
 npx serve -l 8080 . &
 
-# Open in browser (macOS)
-open "http://localhost:8080/front-end/voting-website/"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # macOS
+  open "http://localhost:8080/front-end/voting-website/"
+elif [[ "$OSTYPE" == "msys"* || "$OSTYPE" == "cygwin"* ]]; then
+  # Windows
+  start "http://localhost:8080/front-end/voting-website/"
+else
+  echo "Unsupported OS"
+fi
