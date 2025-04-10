@@ -22,7 +22,12 @@ describe("RealMeToken Contract", function () {
 
     await realMeToken.safeMint(uniqueID, recipient);
     expect(await realMeToken.balanceOf(recipient)).to.equal(1);
-  
+  });
+  it("Should not be able to mint two tokens with the same unique ID", async function () {
+    const recipient = otherAccount.address;
+    const uniqueID = 1;
+
+    await realMeToken.safeMint(uniqueID, recipient);
     await expect(realMeToken.safeMint(uniqueID, recipient)).to.be.revertedWith("Unique ID has already been used");
   });
 
