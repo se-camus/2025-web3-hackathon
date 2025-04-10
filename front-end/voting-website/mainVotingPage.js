@@ -113,6 +113,33 @@ async function watchTransaction(txHash) {
     });
 }
 
+// Add a function to show a popup
+function showPopup(message, isSuccess) {
+    const popup = document.createElement('div');
+    popup.className = `popup ${isSuccess ? 'success' : 'error'}`;
+    popup.textContent = message;
+
+    // Style the popup
+    popup.style.position = 'fixed';
+    popup.style.top = '20px';
+    popup.style.left = '50%';
+    popup.style.transform = 'translateX(-50%)';
+    popup.style.padding = '15px 20px';
+    popup.style.backgroundColor = isSuccess ? '#4caf50' : '#f44336'; // Green for success, red for error
+    popup.style.color = '#fff';
+    popup.style.borderRadius = '5px';
+    popup.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)';
+    popup.style.zIndex = '1000';
+    popup.style.fontSize = '16px';
+
+    document.body.appendChild(popup);
+
+    // Remove the popup after 3 seconds
+    setTimeout(() => {
+        popup.remove();
+    }, 10000);
+}
+
 selectingButtons.forEach(button => {
     button.addEventListener('click', function(){
         const candidateID = button.getAttribute('data-candidate');
@@ -134,45 +161,46 @@ selectingButtons.forEach(button => {
     })
 })
 
-confirmationButton.addEventListener('click', function(){
+confirmationButton.addEventListener('click', function () {
     let candidateID = 0;
-    if (selectState){
-        if (selectState === "candidate1"){
+    if (selectState) {
+        if (selectState === "candidate1") {
             candidate1Vote++;
-            console.log(candidate1Vote)
+            console.log(candidate1Vote);
             candidateID = 0;
-        } else if (selectState === "candidate2"){
+        } else if (selectState === "candidate2") {
             candidate2Vote++;
             console.log(candidate2Vote);
             candidateID = 1;
-        } else if (selectState === "candidate3"){
+        } else if (selectState === "candidate3") {
             candidate3Vote++;
             console.log(candidate3Vote);
             candidateID = 2;
-        } else if (selectState === "candidate4"){
+        } else if (selectState === "candidate4") {
             candidate4Vote++;
             console.log(candidate4Vote);
             candidateID = 3;
         } else {
             alert("Invalid Error Selecting Candidate");
         }
-
     } else {
         alert("Please select a candidate before confirming.");
+        return;
     }
 
-    console.log(candidateID)
-    
-    vote(candidateID).then(txHash => {
-        console.log(`Transaction sent: ${txHash}`);
-        return watchTransaction(txHash);
-    }).then(tx => {
-        console.log(`Transaction confirmed in block: ${tx.blockNumber}`);
-    }).catch(error => {
-        console.error(error);
-    });
+    console.log(candidateID);
 
-    // alert("Thank you for Voting!");
-
-    // window.location.href = 'success.html';  //Takes the user to successPage! 
-})
+    vote(candidateID)
+        .then(txHash => {
+            console.log(`Transaction sent: ${txHash}`);
+            return watchTransaction(txHash);
+        })
+        .then(tx => {
+            console.log(`Transaction confirmed in block: ${tx.blockNumber}`);
+            showPopup("Thank you for voting! Your transaction was successful.", true);
+        })
+        .catch(error => {
+            console.error(error);
+            showPopup("Transaction failed. Please try again.", false);
+        });
+});
