@@ -94,11 +94,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       const address = accounts[0];
 
       updateStatus(`Connected: ${address.slice(0, 6)}...${address.slice(-4)}`);
-      updateMessage("Checking your token balance...");
+      updateMessage("Checking your wallet for tokens...");
 
       // Check if the address already has a token
       const hasToken = await checkTokenBalance(address);
       if (hasToken) {
+        updateStatus("Token detected in your wallet.");
         updateMessage("You already have a token. Redirecting to the voting page...");
         setTimeout(() => {
           window.location.href = `./mainVotingPage.html`;
@@ -106,10 +107,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
       }
 
+      updateStatus("No token found. Proceeding to mint a new token...");
       updateMessage("Minting your token...");
       if (!hasMinted) {
         hasMinted = true;
         await mintToken(uniqueID, address);
+        updateStatus("Token minted successfully.");
         updateMessage("Sending you to the voting page...");
         setTimeout(() => {
           window.location.href = `./mainVotingPage.html`;
