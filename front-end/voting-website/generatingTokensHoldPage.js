@@ -53,6 +53,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
+  async function checkTokenBalance(address) {
+    try {
+      // Call the contract to check the token balance of the address
+      const balance = await ethereum.request({
+        method: "eth_call",
+        params: [
+          {
+            to: mintingContractAddress, // Minting contract address
+            data: `0x70a08231${address.toLowerCase().replace("0x", "").padStart(64, "0")}`, // ERC-721 balanceOf function signature
+          },
+          "latest",
+        ],
+      });
+
+      // Convert the balance from hex to decimal
+      const tokenBalance = parseInt(balance, 16);
+      return tokenBalance > 0;
+    } catch (error) {
+      console.error("Error checking token balance:", error);
+      return false;
+    }
+  }
+
   const connectButton = document.createElement("button");
   connectButton.textContent = "Connect Wallet";
   connectButton.className = "button";
@@ -71,9 +94,19 @@ document.addEventListener("DOMContentLoaded", async () => {
       const address = accounts[0];
 
       updateStatus(`Connected: ${address.slice(0, 6)}...${address.slice(-4)}`);
-      updateMessage("Minting your token...");
+      updateMessage("Checking your token balance...");
 
-      // Ensure minting happens only once
+      // Check if the address already has a token
+      const hasToken = await checkTokenBalance(address);
+      if (hasToken) {
+        updateMessage("You already have a token. Redirecting to the voting page...");
+        setTimeout(() => {
+          window.location.href = `./mainVotingPage.html`;
+        }, 3000);
+        return;
+      }
+
+      updateMessage("Minting your token...");
       if (!hasMinted) {
         hasMinted = true;
         await mintToken(uniqueID, address);
@@ -147,4 +180,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.reload();
   });
 });
-  
