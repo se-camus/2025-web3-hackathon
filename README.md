@@ -23,22 +23,6 @@ Key Features:
 
 ---
 
-## 📂 Project Structure
-```
-2025-web3-hackathon/
-│── contracts/        # Solidity smart contracts
-│── frontend/         # JavaScript-based frontend
-│── ignition/         # Scripts for deploying contracts
-│── scripts/          # Deployment and interaction scripts
-│── test/             # Smart contract tests
-│── hardhat.config.js # Hardhat configuration
-│── package.json      # Project dependencies
-│── README.md         # This file
-│── Working Demo.mp4  # Video of the working demo
-```
-
----
-
 ## 🔧 Setup & Installation
 ### Prerequisites
 Ensure you have the following installed:
@@ -48,14 +32,14 @@ Ensure you have the following installed:
 
 ### Installation Steps
 1. Clone the repository:
-   ```sh
+   ```
    git clone https://github.com/se-camus/2025-web3-hackathon.git
    cd 2025-web3-hackathon
    ```
 2. Obtain your private and public key for the wallet you want to be the governing entity.
 3. Obtain your RPC URL for Ethereum Sepolia through [Alchemy](https://www.alchemy.com/) or [Infura](https://infura.io/).
 4. Run the deploy script (If you are on Windows, ensure you are using Git Bash):
-   ```sh
+   ```
    npm run deploy
    ```
 5. Input the private key, RPC URL, and public key when prompted.
@@ -90,8 +74,24 @@ This project includes a comprehensive suite of unit tests to ensure the reliabil
 - **Edge Cases:** Tests for invalid inputs, such as attempting to vote without a token or minting tokens with duplicate IDs.
 
 To run the tests, use the following command:
-```sh
+```
 npx hardhat test
+```
+
+---
+
+## 📂 Project Structure
+```
+2025-web3-hackathon/
+│── contracts/        # Solidity smart contracts
+│── frontend/         # JavaScript-based frontend
+│── ignition/         # Scripts for deploying contracts
+│── scripts/          # Deployment and interaction scripts
+│── test/             # Smart contract tests
+│── hardhat.config.js # Hardhat configuration
+│── package.json      # Project dependencies
+│── README.md         # This file
+│── Working Demo.mp4  # Video of the working demo
 ```
 
 ---
