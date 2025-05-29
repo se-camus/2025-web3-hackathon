@@ -11,7 +11,9 @@ describe("Ballot Contract", function () {
   let Ballot, ballot, realMeToken, owner, otherAccount;
 
   beforeEach(async function () {
-    [owner, otherAccount] = await ethers.getSigners();
+    const signers = await ethers.getSigners();
+    owner = signers[0]; // The first signer is the owner
+    otherAccount = signers[1]; // The second signer is another account
 
     // Deploy RealMeToken
     const RealMeToken = await ethers.getContractFactory("RealMeToken");
@@ -28,20 +30,19 @@ describe("Ballot Contract", function () {
   it("Should initialize with the correct proposals", async function () {
     const proposal1 = await ballot.proposals(0);
     const proposal2 = await ballot.proposals(1);
-    const proposal3 = await ballot.proposals(2);
+    const proposal3 = await ballot.proposals(2); //NOTE PROPSAL VOTE COUNT IS IN 1 index of array
 
     const expectedProposals = [
       formatBytes32String("Proposal 1"),
       formatBytes32String("Proposal 2"),
       formatBytes32String("Proposal 3"),
-    ];
+    ]; // this is a hex number of the string 
 
-    expect([proposal1[0], proposal2[0], proposal3[0]]).to.deep.equal(expectedProposals);
-    expect([proposal1[1], proposal2[1], proposal3[1]]).to.deep.equal([0n, 0n, 0n]);
+    expect([proposal1[0], proposal2[0], proposal3[0]]).to.deep.equal(expectedProposals); // checks if proposals names are initialized correctly
+    expect([proposal1[1], proposal2[1], proposal3[1]]).to.deep.equal([0n, 0n, 0n]); // checks if no votes have been cast
   });
 
   it("Should initialize with 10 proposals", async function () {
-    [owner, otherAccount] = await ethers.getSigners();
 
     // Deploy RealMeToken
     const RealMeToken = await ethers.getContractFactory("RealMeToken");
@@ -104,5 +105,27 @@ describe("Ballot Contract", function () {
 
     // Attempt to vote for a non-existent proposal
     await expect(ballot.connect(otherAccount).vote(10)).to.be.revertedWithPanic(0x32); // This is the panic code for Array accessed at an out-of-bounds or negative index
+  });
+  it("Should allow voting for same proposal with different tokens", async function () {
+    const signers = await ethers.getSigners();
+    otherAccount2 = signers[2]; // The second signer is another account
+    const uniqueID1 = 1;
+    const uniqueID2 = 2;
+    // Mint two tokens to the voter
+    await realMeToken.safeMint(uniqueID1, otherAccount.address);
+    await realMeToken.safeMint(uniqueID2, otherAccount2.address);
+    expect(await realMeToken.balanceOf(otherAccount.address)).to.equal(1);
+    expect(await realMeToken.balanceOf(otherAccount2.address)).to.equal(1);
+
+    // Vote for Proposal 1 with the first token
+    await ballot.connect(otherAccount).vote(0);
+    let proposal = await ballot.proposals(0); //NOTE PROPSAL VOTE COUNT IS IN 1 index of array
+    expect(proposal[1]).to.equal(1n); // Check that Proposal 0 has 1 vote
+
+    // Vote for Proposal 2 with the second token
+    await ballot.connect(otherAccount2).vote(0);
+    proposal = await ballot.proposals(0);
+
+    expect(proposal[1]).to.equal(2n); // Check that Proposal 0 has 2 votes
   });
 });
