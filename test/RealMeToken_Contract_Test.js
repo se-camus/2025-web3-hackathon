@@ -6,7 +6,10 @@ describe("RealMeToken Contract", function () {
   let RealMeToken, realMeToken, owner, otherAccount;
 
   beforeEach(async function () {
-    [owner, otherAccount] = await ethers.getSigners();
+    const signers = await ethers.getSigners();
+    owner = signers[0]; // The first signer is the owner
+    otherAccount = signers[1]; // The second signer is another account
+    // Deploy RealMeToken
     RealMeToken = await ethers.getContractFactory("RealMeToken");
     realMeToken = await RealMeToken.deploy(owner.address);
     await realMeToken.waitForDeployment();
@@ -36,7 +39,19 @@ describe("RealMeToken Contract", function () {
     const uniqueID = 2;
 
     await expect(
-      realMeToken.connect(otherAccount).safeMint(uniqueID,recipient)
+      realMeToken.connect(otherAccount).safeMint(uniqueID, recipient)
     ).to.be.reverted;
+  });
+
+  it("Should allow the owner to mint to multiple addresses", async function () {
+    const signers = await ethers.getSigners(); // Get all signers
+    const recipients = [signers[2].address, signers[3].address, signers[4].address];
+    const uniqueIDs = [3, 4, 5];
+
+
+    for (let i = 0; i < recipients.length; i++) {
+      await realMeToken.safeMint(uniqueIDs[i], recipients[i]);
+      expect(await realMeToken.balanceOf(recipients[i])).to.equal(1);
+    }
   });
 });
