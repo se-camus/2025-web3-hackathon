@@ -95,4 +95,14 @@ describe("Ballot Contract", function () {
     // Attempt to vote again
     await expect(ballot.connect(otherAccount).vote(0)).to.be.revertedWith("You already voted.");
   });
+  it("Should not allow voting for non-existent proposal", async function () {
+    const uniqueID = 1;
+
+    // Mint a token to the voter
+    await realMeToken.safeMint(uniqueID, otherAccount.address);
+    expect(await realMeToken.balanceOf(otherAccount.address)).to.equal(1);
+
+    // Attempt to vote for a non-existent proposal
+    await expect(ballot.connect(otherAccount).vote(10)).to.be.revertedWithPanic(0x32); // This is the panic code for Array accessed at an out-of-bounds or negative index
+  });
 });
