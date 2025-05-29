@@ -128,4 +128,33 @@ describe("Ballot Contract", function () {
 
     expect(proposal[1]).to.equal(2n); // Check that Proposal 0 has 2 votes
   });
+  it("Should allow voting for different proposals with different tokens", async function () {
+    const signers = await ethers.getSigners();
+    const accounts = [signers[2], signers[3], signers[4], signers[5]];
+    const uniqueIDs = [1, 2, 3, 4];
+
+    // Mint tokens and check balances in a loop
+    for (let i = 0; i < accounts.length; i++) {
+      await realMeToken.safeMint(uniqueIDs[i], accounts[i].address);
+      expect(await realMeToken.balanceOf(accounts[i].address)).to.equal(1);
+    }
+
+    // Vote for two different proposals with two different tokens
+    await ballot.connect(accounts[0]).vote(0); // Vote for Proposal 1 with the first token
+    let proposal = await ballot.proposals(0);
+    expect(proposal[1]).to.equal(1n);
+
+    await ballot.connect(accounts[1]).vote(1); // Vote for Proposal 2 with the second token
+    proposal = await ballot.proposals(1);
+    expect(proposal[1]).to.equal(1n);
+
+    await ballot.connect(accounts[2]).vote(0); // Vote for Proposal 1 with the third token
+    proposal = await ballot.proposals(0);
+    expect(proposal[1]).to.equal(2n);
+
+    await ballot.connect(accounts[3]).vote(1); // Vote for Proposal 2 with the fourth token
+    proposal = await ballot.proposals(1);
+    expect(proposal[1]).to.equal(2n);
+
+  });
 });
